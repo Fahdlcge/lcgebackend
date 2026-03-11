@@ -22,12 +22,13 @@ if not image_b64:
 return jsonify({“error”: “Image manquante”}), 400
 
 ```
-prompt = 'Extrais les donnees de cette fiche client energie. Reponds UNIQUEMENT avec ce JSON valide, rien d\'autre : {"nom":"","type":"particulier","tel":"","email":"","ddn":"","ville":"","fournisseur":"","energie":"","date_signature":"","ancien_fournisseur":"","statut":"actif"}'
+prompt = "Extrais les donnees de cette fiche client energie. Reponds UNIQUEMENT avec ce JSON valide : {\"nom\":\"\",\"type\":\"particulier\",\"tel\":\"\",\"email\":\"\",\"ddn\":\"\",\"ville\":\"\",\"fournisseur\":\"\",\"energie\":\"\",\"date_signature\":\"\",\"ancien_fournisseur\":\"\",\"statut\":\"actif\"}"
 
 payload = json.dumps({
 "model": "claude-haiku-4-5-20251001",
 "max_tokens": 600,
-"messages": [{
+"messages": [
+{
 "role": "user",
 "content": [
 {
@@ -43,7 +44,8 @@ payload = json.dumps({
 "text": prompt
 }
 ]
-}]
+}
+]
 }).encode("utf-8")
 
 req = urllib.request.Request(
